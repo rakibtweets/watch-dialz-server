@@ -65,10 +65,36 @@ async function run() {
     });
 
     // DELETE MyBooking api
-    app.delete('/deleteMyBooking/:id', async (req, res) => {
+    app.delete('/deleteOrders/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await myBuyingWatchCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    //manage All Orders api
+    app.get('/manageAllOrders', async (req, res) => {
+      const cusor = myBuyingWatchCollection.find({});
+      const result = await cusor.toArray();
+      res.send(result);
+    });
+
+    // UPDATE mange Booking api
+    app.put('/manageAllOrders/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const updatedOrder = req.body;
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          status: updatedOrder.status,
+        },
+      };
+      const result = await myBuyingWatchCollection.updateOne(
+        query,
+        updateDoc,
+        options
+      );
       res.send(result);
     });
   } finally {

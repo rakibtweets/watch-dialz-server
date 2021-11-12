@@ -49,6 +49,14 @@ async function run() {
       res.json(result);
     });
 
+    // DeleteProducts API
+    app.delete('/deleteProduct/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await watchesCollection.deleteOne(query);
+      res.send(result);
+    });
+
     //GET ai fot my order list
     app.get('/myBuyingList/:email', async (req, res) => {
       const email = req.params.email;

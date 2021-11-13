@@ -17,6 +17,7 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+
 async function run() {
   try {
     await client.connect();
@@ -172,7 +173,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('Watch shop server running');
+  res.send('Watch Dialz server running');
 });
 
 app.listen(port, () => {

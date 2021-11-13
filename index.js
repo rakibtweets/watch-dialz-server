@@ -152,14 +152,14 @@ async function run() {
       res.json(result);
     });
 
-    //get all reviews
+    //get all users reviews
     app.get('/user/review', async (req, res) => {
       const cursor = userReviewCollection.find({});
       const result = await cursor.toArray();
       res.json(result);
     });
 
-    // user review
+    // user review post
     app.post('/user/review', async (req, res) => {
       const review = req.body;
       const result = await userReviewCollection.insertOne(review);

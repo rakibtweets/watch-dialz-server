@@ -10,7 +10,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ytnhs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ytnhs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ytnhs.mongodb.net/`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -25,6 +27,8 @@ async function run() {
     const myBuyingWatchCollection = database.collection('myBuyingWatch');
     const usersCollection = database.collection('users');
     const userReviewCollection = database.collection('reviews');
+
+    // console.log('Database connected successfully');
 
     //GET API for all watch products
     app.get('/allWatches', async (req, res) => {

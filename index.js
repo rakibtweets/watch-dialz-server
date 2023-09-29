@@ -14,9 +14,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
-
 
 async function run() {
   try {
@@ -98,8 +97,8 @@ async function run() {
       const options = { upsert: true };
       const updateDoc = {
         $set: {
-          status: updatedOrder.status,
-        },
+          status: updatedOrder.status
+        }
       };
       const result = await myBuyingWatchCollection.updateOne(
         query,
@@ -172,7 +171,7 @@ async function run() {
 }
 run().catch(console.dir);
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Watch Dialz server running');
 });
 

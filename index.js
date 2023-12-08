@@ -147,7 +147,6 @@ async function run() {
     });
 
     // make an user admin
-
     app.put('/users/admin', async (req, res) => {
       const user = req.body;
       const filter = { email: user.email };
@@ -175,7 +174,7 @@ async function run() {
 }
 run().catch(console.dir);
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Watch Dialz server running');
 });
 

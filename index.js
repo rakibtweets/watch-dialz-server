@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 // middleware
 app.use(
   cors({
-    origin: ['*', '/*']
+    origin: 'https://niche-watch-shop.web.app'
   })
 );
 app.use(express.json());
